@@ -1,0 +1,486 @@
+Reverse Integer
+
+#include <iostream>
+using namespace std;
+//if integer range -2 power 31  , 2 power 31 -1 ther return 0
+
+//Normal Case
+//ans = ans * 10 +digit
+// start ans = 0
+
+//Exeception Case
+
+//ans = 0 * 10 + 3 = 3
+//ans = 3 * 10 + 2 = 32
+//ans = 32 * 10 + 1 = 321
+
+
+//550
+// 0 * 1 + 5* 10 + 5 *100 = 550
+
+
+// n = 123
+//ans = ans * 10 + digit;
+// digit = 3;
+//ans = 0 , 3
+//n = n/10 = 123/10 = 12
+
+
+// digit = n % 10 = 12 % 10 = 2 
+// ans = 3 * 10 + 2 = 32 
+// n = 12 % 10 = 1
+
+
+//digit = 1% 10 = 1
+//ans = 32 * 10 + 1 = 321
+//n = 1 % 10 = 0
+
+
+#include <iostream>
+
+class Solution {
+public:
+    int reverse(int x) {
+        int ans = 0;
+
+              while (x != 0) {
+            int digit = x % 10;
+            ans = (ans * 10) + digit;
+            x /= 10;  
+        }
+
+        return ans;
+    }
+};
+
+int main() {
+    Solution solution;
+    
+    int input = 123;
+    int reversed = solution.reverse(input);
+
+    std::cout << "Original: " << input << std::endl;
+    std::cout << "Reversed: " << reversed << std::endl;
+
+    return 0;
+}
+
+
+
+// Reverse integer
+// Given Number = 32924
+// Ans = ans * 10 + digit
+
+// For the given number 3292:
+// ans = 0 * 10 + 2 = 2
+// ans = 2 * 10 + 9 = 29
+// ans = 29 * 10 + 2 = 292
+// ans = 292 * 10 + 3 = 329
+// ans = 329 * 10 + 9 = 3299
+
+#include <iostream>
+
+class Solution{
+    public:
+    int reverse(int x){
+        int ans = 0;
+    while(x!=0){
+        int digit = x % 10;
+        ans =  ans * 10 + digit;
+        x /= 10;
+     }
+       return ans; 
+    }
+};
+
+int main(){
+    Solution answer;
+    
+    int input = 3292;
+    int solution = answer.reverse(input);
+    
+    std::cout << input << "Main Value" << std::endl;
+    std::cout << solution << "Reverse Value" << std::endl;
+    
+    return 0;
+    
+}
+
+// Reverse integer
+// Given Number = 32924
+// Ans = ans * 10 + digit
+
+// For the given number 3292:
+// ans = 0 * 10 + 2 = 2
+// ans = 2 * 10 + 9 = 29
+// ans = 29 * 10 + 2 = 292
+// ans = 292 * 10 + 3 = 329
+// ans = 329 * 10 + 9 = 3299
+
+
+#include <iostream>
+#include <climits>
+
+class Solution{
+    public:
+    int reverse(int x){
+        int ans = 0;
+  
+    while(x!=0){
+        //Exception Case When Number is out of int Range
+       if ((ans > INT_MAX / 10) || (ans < INT_MIN / 10)) {
+                return 0;
+        }
+        int digit = x % 10;
+        ans =  ans * 10 + digit;
+        x /= 10;
+     }
+       return ans; 
+    }
+};
+
+int main(){
+    Solution answer;
+    
+    int input = 3292;
+    int solution = answer.reverse(input);
+    
+    std::cout << input << " Main Value " << std::endl;
+    std::cout << solution << " Reverse Value " << std::endl;
+    
+    return 0;
+    
+}
+
+
+
+//Bits Ke shaath Khel Ke complement karke dena hai
+//n= 10  1010 = 0101
+//n = 5  101 = 010
+
+
+#include <iostream>
+#include <climits>
+
+class Solution {
+public:
+    int bitwiseComplement(int n) {
+        int m = n;
+        int mask = 0;
+
+        if (n == 0) {
+            return 1;
+        }
+
+        while (m != 0) {
+            mask = (mask << 1) | 1;  
+            //logical OR
+            m = m >> 1;
+        }
+
+        int ans = (~n) & mask;
+        return ans;
+    }
+};
+
+int main() {
+    Solution answer;
+
+    int input = 10;
+    int solution = answer.bitwiseComplement(input);
+
+    std::cout << solution << " Main Value " << std::endl;
+
+    return 0;
+}
+
+
+1)It initializes a variable m with the value of n and a variable mask with the value of 0.
+
+2)If n is 0, it returns 1 (the bitwise complement of 0 is 1).
+
+3)It enters a loop that iterates until m becomes 0.
+
+4)Inside the loop, it left-shifts the mask variable by 1 bit and performs a bitwise OR with 1 (effectively setting the rightmost bit of mask to 1).
+
+5)It right-shifts m by 1 bit in each iteration of the loop.
+
+6)After the loop, it calculates the bitwise complement of n using the bitwise NOT operator
+
+7)(~) and performs a bitwise AND with the calculated mask.
+
+
+n = 5; binary value (101) - memory stored in 32 bites 00000....00101
+n = 2; binary value (10) - 0000000.....0010
+
+
+~n = ~5 = 111111.....11010  = this is correct 
+
+we need to create mask to convert like 000000000.....111 --mask  (kyuki 5 ki rep main third num pe 1 aata hai)
+
+mask & n = 000000000000...111
+
+(~n) & mask = answer
+
+if n = 5 
+0000000000....101
+
+mask = 0000000....111
+
+right shift m = m >> 1
+if number = 0000....0101
+I) 00000....0010
+II)00000....0001 -> !=0
+III)00000...0000 -> !=0
+
+
+we need to right shift when value is does not equals to zero
+jab tak 3 times loop run ki tab tak 3 times one dalna hoga
+mask = 0
+
+then left shift mask << 1 || 1
+
+000000...10
+000000...11
+
+
+acc << 1 = 0000 << 1 = 00000
+acc << 1 | 1 = 00000 | 1 = 00001
+acc << 1 | 1 = 00001 | 1 = 00011
+acc << 1 | 1 = 00011 | 1 = 00111
+acc << 1 | 1 = 00111 | 1 = 01111
+acc << 1 | 1 = 01111 | 1 = 11111
+
+
+#include <iostream>
+#include <climits>
+using namespace std;
+
+class binaryNum {
+public:
+    int getBinary(int x) {
+        int m = x;
+        int mask = 0;
+
+        if (x == 0) {
+            return 1;
+        }
+
+        while (m != 0) {
+            mask = (mask << 1) | 1;
+
+            //right shift tab tak karange jab tak number zero nahi ho jata
+            m = m >> 1;
+        }
+
+        int ans = (~x) & mask;
+        return ans;
+    }
+};
+
+int main() {
+    binaryNum answer;
+
+    int input = 10;
+    int solution = answer.getBinary(input);
+
+    std::cout << "Binary representation: " << solution << std::endl;
+
+    return 0;
+}
+
+
+
+#include <iostream>
+#include <cmath>  // Include the <cmath> header for pow function
+using namespace std;
+
+class binartForm {
+public:
+    bool isPowerOfTwo(int n) {
+        for (int i = 0; i < 30; i++) {
+            // int ans = pow(2, i);
+            int ans = 1;
+            if (ans == n) {
+                return true;
+            }
+            ans = ans * 2;
+        }
+        return false;
+    }
+};
+
+
+int main() {
+    binartForm binaryObj;
+
+    int input = 3;
+    bool result = binaryObj.isPowerOfTwo(input);
+
+    std::cout << "Is " << input << " a power of two? " << (result ? "Yes" : "No") << std::endl;
+
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+ int main(){
+     int a,b;
+     cout << "Enter the value of a " << endl;
+     cin >> a;
+     
+     cout << "Enter the value of b " << endl;
+     cin >> b;
+     
+     char op;
+     cout << "Enter the Operation " << endl;
+     cin >> op;
+     
+     switch(op){
+         case '+' : cout << (a+b) << endl;
+         break;
+         case '-' : cout << (a-b) << endl;
+          break;
+         case '*' : cout << (a*b) << endl;
+          break;
+         case '%' : cout << (a%b) << endl;
+          break;
+         default : cout << "Please Enter a valid operation";
+     }
+ }
+ 
+//How Much Notes
+#include <iostream>
+using namespace std;
+
+int main(){
+    int totalRupees = 1350;
+
+    int rupee100,rupee50,rupee20,rupee10;
+    
+   switch(totalRupees/100){
+    case 0:
+        rupee100 = 0;
+    break;
+     default:
+      rupee100 = totalRupees/100;
+      totalRupees %= 100;
+      break;
+    }
+    
+    switch(totalRupees/50){
+    case 0:
+        rupee50 = 0;
+    break;
+     default:
+      rupee50 = totalRupees/50;
+      totalRupees %= 50;
+      break;
+    }
+    
+    
+  switch(totalRupees/20){
+    case 0:
+        rupee20 = 0;
+    break;
+     default:
+      rupee20 = totalRupees/20;
+      totalRupees %= 20;
+      break;
+    }
+    
+     switch(totalRupees/10){
+    case 0:
+        rupee10 = 0;
+    break;
+     default:
+      rupee10 = totalRupees/10;
+      totalRupees %= 10;
+      break;
+    }
+    
+    
+    cout << rupee100 << " 100 Rupees" << endl;
+    cout << rupee50 << " 50 Rupees" << endl;
+    cout << rupee20 << " 20 Rupees" << endl;
+    cout << rupee10 << " 10 Rupees" << endl;
+    
+    return 0;
+}
+
+//find factorial using ncr formula
+#include <iostream>
+using namespace std;
+
+int factorial(int n){
+    int fact = 1;
+  for(int i=0;i<=n;i++){
+     fact = n * i;
+  }
+ return fact;
+}
+
+int ncR(int n,int r){
+ int num = factorial(n);
+
+ int denom = factorial(r) * factorial(n-r);
+
+ return num/denom;
+}
+
+
+int main(){
+     // Explanation of the calculation
+    // C(10, 3) = 10! / (3! * (10-3)!)
+    // C(10, 3) = (10 * 9 * 8) / (3 * 2 * 1)
+    // C(10, 3) = 720 / 6
+    // C(10, 3) = 120
+   cout << ncR(10,3);
+}
+
+
+//prime number programme
+
+#include <iostream>
+using namespace std;
+
+int primeOrNot(int num){
+    int checkPrime;
+  for(int i = 2; i <=num;i++){
+     if((num%2) ==0){
+       return 0;
+     }
+  }
+  return 1;
+}
+
+int main(){
+    int ans =  primeOrNot(10);
+    cout << ans;
+}
+
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
