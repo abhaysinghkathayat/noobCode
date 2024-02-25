@@ -1,0 +1,100 @@
+### Big O Notation:
+
+- **Upper Bound (O):** Represents the maximum time complexity of an algorithm, indicating the worst-case scenario.
+
+    - **Constant Time (O(1)):** Denotes constant time complexity, where the execution time remains constant regardless of the input size.
+        ```cpp
+        for (i = 0; i < 10; i++) {
+            cout << "Hello";
+        }
+        ```
+
+    - **Linear Time (O(n)):** Implies a linear relationship between the input size (n) and the algorithm's time complexity.
+        ```cpp
+        for (i = 0; i < n; i++) {
+            cout << "Hello";
+        }
+        ```
+
+    - **Logarithmic Time (O(log n)):** Signifies time complexity that grows logarithmically with the input size. Commonly seen in binary search.
+
+    - **Quadratic Time (O(n^2)):** Represents time complexity proportional to the square of the input size.
+        ```cpp
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                // ...
+            }
+        }
+        ```
+
+    - **Cubic Time (O(n^3)):** Indicates time complexity proportional to the cube of the input size.
+        ```cpp
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                for (k = 0; k < n; k++) {
+                    // ...
+                }
+            }
+        }
+        ```
+
+    - **Comparison of Complexities:** 
+        - n^2 complexity is higher than (n log n).
+        - (2n)^2 + 3n = 2n^2 time complexity
+        - (2n)^4 + (3n)^3 = 4n^4 time complexity
+        - (n)^2 + log(n) = n^2
+
+### Time Complexity Analysis:
+
+- **Combined Time Complexity:** Combines multiple loops to determine the overall time complexity.
+
+    ```cpp
+    for (i = 0; i < n; i++) {}
+    for (j = 0; j < m; j++) {}
+    ```
+
+    Time complexity is O(m + n).
+
+    ```cpp
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {}
+    }
+    for (k = 0; k < n; k++) {}
+    ```
+
+    Time complexity is O(n^2 + n) = O(n^2).
+
+### Space Complexity:
+
+- **Constant Space (O(1)):** Represents algorithms that use a fixed amount of space, regardless of the input size.
+    ```cpp
+    int a = 0;
+    int b = 0;
+    ```
+
+- **Variable Space (O(n)):** Denotes space complexity proportional to the input size.
+    ```cpp
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    ```
+
+- **Static Array (O(1)):** Indicates constant space complexity for static arrays, as their size is fixed.
+    ```cpp
+    int arr[5] = {1,2,3,4,5};
+    ```
+
+### Additional Examples:
+
+- **Dynamic Vector Space Complexity (O(n)):**
+    ```cpp
+    for (int i = 0; i < n; i++) {
+        vector<int> v(n);
+        for (int j = 0; j < n; j++) {
+            // ...
+        }
+    }
+    ```
+    Space complexity is O(n).
+
+
